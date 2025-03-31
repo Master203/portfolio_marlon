@@ -7,6 +7,7 @@ jQuery(document).ready(function(){
 	portfolio_tm_nav_bg();
 	portfolio_tm_trigger_menu();	
 	portfolio_tm_mycounter();	
+	progress_by_frenify();
 	portfolio_tm_cursor();
 	portfolio_tm_data_images();
 	portfolio_tm_contact_form();
@@ -82,8 +83,165 @@ function portfolio_tm_trigger_menu(){
 	});
 }
 
+// -------------------------------------------------
+// -------------  SERVICE POPUP  -------------------
+// -------------------------------------------------
+
+function dizme_tm_service_popup(){
+	
+	"use strict";
+	
+	var modalBox		= jQuery('.dizme_tm_modalbox');
+	var button			= jQuery('.dizme_tm_services .service_list ul li .dizme_tm_full_link');
+	var closePopup		= modalBox.find('.close');
+	
+	button.on('click',function(){
+		var element = jQuery(this);
+		var parent	= element.closest('.dizme_tm_services .service_list ul li');
+		var elImage	= parent.find('.popup_service_image').attr('src');
+		var title	= parent.find('.title').html();
+		var content = parent.find('.service_hidden_details').html();
+		modalBox.addClass('opened');
+		modalBox.find('.description_wrap').html(content);
+		modalBox.find('.service_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+elImage+'"></div></div>');
+		dizme_tm_data_images();
+		modalBox.find('.service_popup_informations .image').after('<div class="main_title">'+title+'</div>');
+		return false;
+	});
+	closePopup.on('click',function(){
+		modalBox.removeClass('opened');
+		modalBox.find('.description_wrap').html('');
+		return false;
+	});
+}
+
+// -------------------------------------------------
+// -------------  MODALBOX NEWS  -------------------
+// -------------------------------------------------
+
+function dizme_tm_modalbox_news(){
+	
+	"use strict";
+	
+	var modalBox		= jQuery('.dizme_tm_modalbox');
+	var button			= jQuery('.dizme_tm_news .dizme_tm_full_link,.dizme_tm_news ul li .details .title a');
+	var closePopup		= modalBox.find('.close');
+	
+	button.on('click',function(){
+		var element 	= jQuery(this);
+		var parent 		= element.closest('.list_inner');
+		var content 	= parent.find('.news_hidden_details').html();
+		var image		= element.closest('.list_inner').find('.image .main').data('img-url');
+		var category	= parent.find('.details .category').html();
+		var title	 	= parent.find('.details .title a').text();
+		modalBox.addClass('opened');
+		modalBox.find('.description_wrap').html(content);
+		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+		modalBox.find('.news_popup_informations .image').after('<div class="details"><h3>'+title+'</h3><span>'+category+'</span><div>');
+		dizme_tm_data_images();
+		return false;
+	});
+	closePopup.on('click',function(){
+		modalBox.removeClass('opened');
+		modalBox.find('.description_wrap').html('');
+		return false;
+	});
+}
+
+// -------------------------------------------------
+// -------------  MODALBOX PORTFOLIO  --------------
+// -------------------------------------------------
+
+function dizme_tm_modalbox_portfolio(){
+	
+	"use strict";
+	
+	var modalBox		= jQuery('.dizme_tm_modalbox');
+	var button			= jQuery('.dizme_tm_portfolio .portfolio_popup');
+	var closePopup		= modalBox.find('.close');
+	
+	button.off().on('click',function(){
+		var element 	= jQuery(this);
+		var parent 		= element.closest('.inner');
+		var content	 	= parent.find('.hidden_content').html();
+		var image		= parent.find('.entry .main').data('img-url');
+		var category 	= parent.find('.entry').data('category');
+		var title	 	= parent.find('.entry').data('title');
+		modalBox.addClass('opened');
+		modalBox.find('.description_wrap').html(content);
+		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3>'+title+'</h3><span><a href="#">'+category+'</a></span><div>');
+		dizme_tm_data_images();
+		return false;
+	});
+	closePopup.on('click',function(){
+		modalBox.removeClass('opened');
+		modalBox.find('.description_wrap').html('');
+		return false;
+	});
+}
 
 
+// -------------------------------------------------
+// -----------------    PORTFOLIO    ---------------
+// -------------------------------------------------
+
+// filterable 
+
+function dizme_tm_portfolio(){
+
+	"use strict";
+
+	if(jQuery().isotope) {
+
+		// Needed variables
+		var filter		 = jQuery('.dizme_tm_portfolio .portfolio_filter ul');
+
+		if(filter.length){
+			// Isotope Filter 
+			filter.find('a').on('click', function(){
+				var element		= jQuery(this);
+				var selector 	= element.attr('data-filter');
+				var list		= element.closest('.dizme_tm_portfolio').find('.portfolio_list').children('ul');
+				list.isotope({ 
+					filter				: selector,
+					animationOptions	: {
+						duration			: 750,
+						easing				: 'linear',
+						queue				: false
+					}
+				});
+				
+				filter.find('a').removeClass('current');
+				element.addClass('current');
+				return false;
+			});	
+		}
+	}
+}
+
+function dizme_tm_projects(){
+	
+	"use strict";
+	
+	jQuery('.dizme_tm_portfolio_animation_wrap').each(function() {
+		jQuery(this).on('mouseenter', function() {
+			if (jQuery(this).data('title')) {
+				jQuery('.dizme_tm_portfolio_titles').html(jQuery(this).data('title') + '<span class="work__cat">' + jQuery(this).data('category') + '</span>');
+				jQuery('.dizme_tm_portfolio_titles').addClass('visible');
+			}
+
+			jQuery(document).on('mousemove', function(e) {
+				jQuery('.dizme_tm_portfolio_titles').css({
+					left: e.clientX - 10,
+					top: e.clientY + 25
+				});
+			});
+		}).on('mouseleave', function() {
+			jQuery('.dizme_tm_portfolio_titles').removeClass('visible');
+		});
+	});
+}
 
 // -------------------------------------------------
 // -------------  PROGRESS BAR  --------------------
@@ -267,7 +425,7 @@ $('.grid').masonry({
 // ----------------    PROGRESS LINE    ----------------
 // -----------------------------------------------------
 
-function portfolio_tm_progress_line(){
+function dizme_tm_progress_line(){
 	
 	"use strict";
 	
