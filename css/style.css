@@ -596,7 +596,15 @@ h6 { font-size: 16px; }
 /*	04) portfolio HERO
 /*---------------------------------------------------*/
 
-.greenText{color: #000000 !important;font-weight: 500;}
+.greenText{
+	color: #000000 !important;
+	font-family: "Dancing Script", cursive;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+	font-size: 31px;
+}
 .purpleText{color: #000000 !important;font-weight: 500;}
 .orangeText{color: #f75023 !important;font-weight: 500;}
 .yellowText{color: #f0c45c !important;font-weight: 500;}
