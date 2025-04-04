@@ -14,9 +14,7 @@ jQuery(document).ready(function(){
 	portfolio_tm_totop();
 	portfolio_tm_down();
 	
-	jQuery(window).load('body', function(){
-		dizme_tm_my_load();
-	});
+	
 	jQuery(window).on('scroll', function(){
 		dizme_tm_progress_line();
 	});
@@ -498,5 +496,26 @@ $('.portfolio_list').waitForImages().done(function() {
     // All descendant images have loaded, now slide up.
     $('.grid').masonry({
 		itemSelector: '.grid-item',
+	});
+});
+
+
+
+document.querySelectorAll(".vcardLink").forEach(link => {
+	link.addEventListener("click", function (event) {
+		event.preventDefault(); // Evita la navegación predeterminada
+
+		// Inicia la descarga
+		const downloadLink = document.createElement("a");
+		downloadLink.href = this.href;
+		downloadLink.download = "vcardMR.vcf";
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+
+		// Redirige después de un pequeño retraso
+		setTimeout(() => {
+			window.location.href = "./vcard/index.html";
+		}, 1500); // 1.5 segundos de espera
 	});
 });

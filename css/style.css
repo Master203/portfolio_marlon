@@ -959,7 +959,7 @@ h6 { font-size: 16px; }
 
 .portfolio_tm_about{
 	width: 100%;
-	height: auto;
+	height: 100%;
 	clear: both;
 	float: left;
 	padding-top: 100px;
@@ -2188,4 +2188,7 @@ ul.news  li .image {
     overflow: hidden;
     margin-bottom: 20px;
     border-radius: 12px;
+}
+div#home {
+    height: 100vh;
 }
