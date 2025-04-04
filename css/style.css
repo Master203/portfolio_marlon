@@ -1936,7 +1936,7 @@ input[type=number] {
 	.portfolio_tm_hero .text{margin-bottom: 30px;}
 	.portfolio_tm_hero .text p{font-size: 20px;}
 	.portfolio_tm_down {bottom: 20px;        display: none;}
-	.portfolio_tm_button {
+	a.anchor {
 		display: none;
 	}
 	.portfolio_tm_process ul{margin: 0px;}
