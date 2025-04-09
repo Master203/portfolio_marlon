@@ -2137,6 +2137,13 @@ input[type=number] {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
+	.portfolio_tm_hero .image {
+		position: relative;
+		margin-top: 130px;
+	}
+	.greenText {
+		font-size: 25px;
+	}
 }
 .pt-5{padding-top: 10px;}
 .pt-100{padding-top: 150px;}
@@ -2195,3 +2202,7 @@ ul.news  li .image {
 div#home {
     height: 100vh;
 }
+
+
+
+
